@@ -3,20 +3,21 @@ const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
+const botaoReiniciar = document.querySelector(".botao-reiniciar");
 
 const perguntas = [
     {
-        enunciado: "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
+        enunciado: "Uma notícia apresenta dados estatísticos verdadeiros, mas utiliza esses números fora de contexto para convencer os leitores de uma conclusão falsa. Isso pode ser considerado Fake News?",
         alternativas: [
             {
-                texto: "Isso é assustador!",
-                afirmacao: "afirmacao"
+                texto: "Não, porque os números apresentados são verdadeiros.",
+                afirmacao: "resposta errada"
             },
             {
-                texto: "Isso é maravilhoso!",
+                texto: "Sim, porque dados verdadeiros também podem ser manipulados para transmitir informações enganosas. ",
                 afirmacao: "afirmacao"
             }           
-            
+  
         ]
     },
     {
@@ -88,6 +89,10 @@ function mostraPergunta() {
     }
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaPerguntas.classList.remove("game-over");
+    document.querySelector("h1").style.display = "block";
+    textoResultado.style.color = "";
+    botaoReiniciar.style.display = "none";
     caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
@@ -103,15 +108,45 @@ function mostraAlternativas(){
 
 function respostaSelecionada(opcaoSelecionada){
     const afirmacoes = opcaoSelecionada.afirmacao;
+
+    if (afirmacoes === "resposta errada") {
+        mostraGameOver();
+        return;
+    }
+
     historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
+}
+
+function mostraGameOver() {
+    caixaPerguntas.textContent = "Game Over";
+    caixaPerguntas.classList.add("game-over");
+    document.querySelector("h1").style.display = "none";
+    textoResultado.textContent = "Resposta errada";
+    textoResultado.style.color = "red";
+    caixaAlternativas.textContent = "";
+    botaoReiniciar.style.display = "block";
 }
 
 function mostraResultado(){
     caixaPerguntas.textContent = "FIM";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.textContent = ""; 
+    botaoReiniciar.style.display = "block";
 }
+
+function reiniciarJogo() {
+    atual = 0;
+    historiaFinal = "";
+    caixaPerguntas.classList.remove("game-over");
+    document.querySelector("h1").style.display = "block";
+    textoResultado.textContent = "";
+    textoResultado.style.color = "";
+    botaoReiniciar.style.display = "none";
+    mostraPergunta();
+}
+
+botaoReiniciar.addEventListener("click", reiniciarJogo);
 
 mostraPergunta();

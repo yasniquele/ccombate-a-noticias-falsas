@@ -1,9 +1,9 @@
 :root{
-    --cor-fundo: #01080E ;
-    --cor-principal: #0B0D20 ;
-    --cor-secundaria: #212333; 
-    --cor-destaque: #2BDEFD;
-    --cor-texto: #D7F9FF;
+    --cor-fundo: #3e5c76;
+    --cor-principal: #f0ebd8 ;
+    --cor-secundaria: #6c757d; 
+    --cor-destaque: #748cab;
+    --cor-texto: #0d1321;
 
 }
 
@@ -14,6 +14,9 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 .caixa-principal{
@@ -21,20 +24,87 @@ body {
     width: 90%;
     max-width: 600px;
     text-align: center;
-    padding: 20px;
+    padding: 24px 20px;
+    border-radius: 20px;
+    border: 2px solid var(--cor-destaque);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-sizing: border-box;
 }
 
 h1{
     color: var(--cor-destaque);
+    margin: 0;
+}
+
+.caixa-perguntas,
+.caixa-resultado {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    padding: 14px;
+    line-height: 1.5;
+}
+
+.game-over {
+    color: red;
+    font-weight: 900;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+}
+
+.caixa-resultado {
+    text-align: center;
+}
+
+.texto-resultado {
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.caixa-principal .texto-resultado {
+    color: black;
+}
+
+.caixa-alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botao-reiniciar {
+    display: none;
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    width: 50%;
+    min-height: 42px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px auto 0 auto;
 }
 
 button {
     background-color: var(--cor-secundaria);
     color: var(--cor-texto);
     border: none;
-    border-radius: 15px;
-    padding: 15px;
+    border-radius: 18px;
+    padding: 18px 24px;
+    width: 100%;
+    min-height: 56px;
     transition: background-color 0.3s;
+    font-size: 1rem;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
 button:hover{

@@ -4,6 +4,10 @@ const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 const botaoReiniciar = document.querySelector(".botao-reiniciar");
+const telaInicio = document.querySelector(".tela-inicio");
+const telaJogo = document.querySelector(".tela-jogo");
+const botaoIniciar = document.querySelector(".botao-iniciar");
+const imagemQuiz = document.querySelector(".imagem-quiz");
 
 const perguntas = [
     {
@@ -214,6 +218,7 @@ const perguntas = [
 let atual = 0; 
 let perguntaAtual;
 let historiaFinal = "";
+let acertos = 0;
 
 function mostraPergunta() {
     if(atual >= perguntas.length){
@@ -243,6 +248,10 @@ function mostraAlternativas(){
 function respostaSelecionada(opcaoSelecionada){
     const afirmacoes = opcaoSelecionada.afirmacao;
 
+    if (opcaoSelecionada.pontos > 0) {
+        acertos++;
+    }
+
     if (perguntaAtual.gameOverOnWrong && opcaoSelecionada.pontos === 0) {
         mostraGameOver();
         return;
@@ -257,7 +266,7 @@ function mostraGameOver() {
     caixaPerguntas.textContent = "Game Over";
     caixaPerguntas.classList.add("game-over");
     document.querySelector("h1").style.display = "none";
-    textoResultado.textContent = "Resposta errada";
+    textoResultado.textContent = `Você acertou ${acertos}/${perguntas.length} — resposta errada`;
     textoResultado.style.color = "red";
     caixaAlternativas.textContent = "";
     botaoReiniciar.style.display = "block";
@@ -267,13 +276,14 @@ function mostraResultado(){
     caixaPerguntas.textContent = "FIM";
     caixaPerguntas.classList.add("fim");
     caixaPerguntas.classList.remove("game-over");
-    textoResultado.textContent = "Você acertou 10/9";
+    textoResultado.textContent = `Você acertou ${acertos}/${perguntas.length}`;
     caixaAlternativas.textContent = "";
     botaoReiniciar.style.display = "block";
 }
 
 function reiniciarJogo() {
     atual = 0;
+    acertos = 0;
     historiaFinal = "";
     caixaPerguntas.classList.remove("game-over");
     caixaPerguntas.classList.remove("fim");
@@ -285,5 +295,9 @@ function reiniciarJogo() {
 }
 
 botaoReiniciar.addEventListener("click", reiniciarJogo);
-
-mostraPergunta();
+botaoIniciar.addEventListener("click", () => {
+    telaInicio.hidden = true;
+    telaJogo.hidden = false;
+    imagemQuiz.src = "imagem/FAKENEWS.jpg";
+    mostraPergunta();
+});

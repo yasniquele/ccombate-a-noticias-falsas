@@ -22,20 +22,46 @@ body {
 .caixa-principal{
     background-color: var(--cor-principal);
     width: 90%;
-    max-width: 600px;
-    text-align: center;
+    max-width: 900px;
     padding: 24px 20px;
     border-radius: 20px;
     border: 2px solid var(--cor-destaque);
     display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    box-sizing: border-box;
+}
+
+.conteudo {
+    flex: 1;
+    display: flex;
     flex-direction: column;
     gap: 14px;
-    box-sizing: border-box;
+    text-align: center;
 }
 
 h1{
     color: var(--cor-destaque);
     margin: 0;
+}
+
+.imagem-coluna {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.imagem-quiz {
+    width: 100%;
+    max-width: 190px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid var(--cor-destaque);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .caixa-perguntas,
@@ -53,6 +79,18 @@ h1{
     text-align: center;
     margin: 0 auto;
     letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+}
+
+.fim {
+    color: var(--cor-destaque);
+    font-weight: 900;
+    font-size: 3rem;
+    text-align: center;
+    margin: 0 auto;
+    letter-spacing: 2px;
     text-transform: uppercase;
     display: block;
     width: 100%;
@@ -110,4 +148,19 @@ button {
 button:hover{
     background-color: var(--cor-destaque);
     color: var(--cor-principal);
+}
+
+@media (max-width: 768px) {
+    .caixa-principal {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo {
+        width: 100%;
+    }
+
+    .imagem-coluna {
+        width: 70%;
+    }
 }

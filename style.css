@@ -82,17 +82,17 @@ h1{
 }
 
 .imagem-coluna {
-    width: 280px;
+    width: 300px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 20px;
+    padding-top: 100px;
 }
 
 .imagem-quiz {
     width: 100%;
-    max-width: 270px;
+    max-width: 290px;
     height: auto;
     object-fit: cover;
     border-radius: 18px;
@@ -109,7 +109,7 @@ h1{
 }
 
 .game-over {
-    color: red;
+    color: rgb(255, 0, 0);
     font-weight: 900;
     font-size: 3rem;
     text-align: center;
